@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class RayShooter : MonoBehaviour {
     private Camera _camera;
     public int TimeMiss = 1;
+    public GameObject Projector;
 
     // Use this for initialization
     void Start() {
@@ -27,11 +28,16 @@ public class RayShooter : MonoBehaviour {
 
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit)) {
+                
+                Quaternion projectorRotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal);
+
+                Instantiate(Projector, hit.point + hit.normal * 0.25f, projectorRotation);
                
-                StartCoroutine(SphereIndicator(hit.point));
+//                StartCoroutine(SphereIndicator(hit.point));
             }
         }
     }
+
 
     private IEnumerator SphereIndicator(Vector3 pos) {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
