@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class RayShooter : MonoBehaviour {
     private Camera _camera;
     public int TimeMiss = 1;
-    public GameObject Projector;
+    public GameObject[] Projector;
 
     // Use this for initialization
     void Start() {
@@ -20,7 +20,6 @@ public class RayShooter : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            
             Debug.Log("Выстрел");
 
             Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
@@ -28,11 +27,19 @@ public class RayShooter : MonoBehaviour {
 
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit)) {
-                
                 Quaternion projectorRotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal);
 
-                Instantiate(Projector, hit.point + hit.normal * 0.25f, projectorRotation);
-               
+                int rndInt;
+                rndInt = Random.Range(0, Projector.Length);
+
+                int rndRotation;
+                rndRotation = Random.Range(0, 360);
+                
+                GameObject _projector;
+                _projector = Instantiate(Projector[rndInt], hit.point + hit.normal * 0.25f, projectorRotation);
+                _projector.transform.Rotate(0, 0, rndRotation);
+                _projector.transform.SetParent(hit.transform);
+
 //                StartCoroutine(SphereIndicator(hit.point));
             }
         }
