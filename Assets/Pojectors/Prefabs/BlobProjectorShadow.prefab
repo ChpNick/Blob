@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 540209822297784443}
   - component: {fileID: -6355468310075703447}
   m_Layer: 0
-  m_Name: Blob projector
+  m_Name: BlobProjectorShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4404887070690672697
 Transform:
