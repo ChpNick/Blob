@@ -10,6 +10,7 @@ using UnityEngine;
 public class FPSInput : MonoBehaviour {
     public float speed = 6.0f;
     public float gravity = -9.8f;
+    [SerializeField] private FixedJoystick _fixedJoystick;
 
     private CharacterController _charController;
 
@@ -19,8 +20,8 @@ public class FPSInput : MonoBehaviour {
 
     void Update() {
 //        Debug.Log(1 / Time.deltaTime);
-        float deltaX = Input.GetAxis("Horizontal") * speed;
-        float deltaZ = Input.GetAxis("Vertical") * speed;
+        float deltaX = Input.GetAxis("Horizontal") * speed + _fixedJoystick.Horizontal * speed;
+        float deltaZ = Input.GetAxis("Vertical") * speed + _fixedJoystick.Vertical * speed;
 
         Vector3 movement = new Vector3(deltaX, 0, deltaZ);
 
