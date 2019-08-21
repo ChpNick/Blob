@@ -34,15 +34,16 @@ public class MouseLook : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        #if UNITY_ANDROID
+        #if UNITY_EDITOR
+        if (EventSystem.current.IsPointerOverGameObject()) {
             _MouseLook(_fixedJoystickLook.Horizontal, _fixedJoystickLook.Vertical);
-        #else
-            if (EventSystem.current.IsPointerOverGameObject()) {
-                _MouseLook(_fixedJoystickLook.Horizontal, _fixedJoystickLook.Vertical);
-            }
-            else {
-                _MouseLook(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-            }
+        }
+        else {
+            _MouseLook(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        }
+        
+        #elif UNITY_ANDROID
+            _MouseLook(_fixedJoystickLook.Horizontal, _fixedJoystickLook.Vertical);
         #endif
     }
 
