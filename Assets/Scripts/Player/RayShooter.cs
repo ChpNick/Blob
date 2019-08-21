@@ -9,7 +9,6 @@ public class RayShooter : MonoBehaviour {
 
     [SerializeField] private GameObject ball;
 
-    // Use this for initialization
     void Start() {
         _camera = GetComponent<Camera>();
 
@@ -18,16 +17,37 @@ public class RayShooter : MonoBehaviour {
 //        Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update() {
+        Fire();
+    }
+
+#if UNITY_EDITOR
+    private void Fire() {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
             Debug.Log("Выстрел");
 
             CreateBall();
+        }
+        
+    }
+#elif UNITY_ANDROID
+    private void Fire() {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
+            Debug.Log("Выстрел");
 
-//                StartCoroutine(SphereIndicator(hit.point));
+            CreateBall();
         }
     }
+#else
+    private void Fire() {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
+            Debug.Log("Выстрел");
+
+            CreateBall();
+        }
+        
+    }
+#endif
 
     private void CreateBall() {
         Vector3 thePosition = transform.TransformPoint(Vector3.forward * 2);
