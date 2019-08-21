@@ -21,6 +21,8 @@ public class MouseLook : MonoBehaviour {
     public float maximumVert = 45.0f;
 
     private float _rotationX = 0;
+    
+    [SerializeField] private FixedJoystick _fixedJoystickLook;
 
     // Use this for initialization
     void Start() {
@@ -32,29 +34,40 @@ public class MouseLook : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (EventSystem.current.IsPointerOverGameObject()) {
-            return;
-        }
+        #if UNITY_ANDROID
+            _MouseLook(_fixedJoystickLook.Horizontal, _fixedJoystickLook.Vertical);
+        #else
+            if (EventSystem.current.IsPointerOverGameObject()) {
+                _MouseLook(_fixedJoystickLook.Horizontal, _fixedJoystickLook.Vertical);
+            }
+            else {
+                _MouseLook(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            }
+        #endif
+    }
 
+    private void _MouseLook(float rotationX, float rotationY) {
+        
         if (axes == RotationAxes.MouseX) {
-            transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityHor, 0);
+            transform.Rotate(0, rotationX * sensitivityHor, 0);
         }
         else if (axes == RotationAxes.MouseY) {
-            _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
+            _rotationX -= rotationY * sensitivityVert;
             _rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert);
 
-            float rotationY = transform.localEulerAngles.y;
-            transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
+            float _rotationY = transform.localEulerAngles.y;
+            transform.localEulerAngles = new Vector3(_rotationX, _rotationY, 0);
         }
         else {
             // это комбинированный поворот
-            _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
+            _rotationX -= rotationY * sensitivityVert;
             _rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert);
 
-            float delta = Input.GetAxis("Mouse X") * sensitivityHor;
-            float rotationY = transform.localEulerAngles.y + delta;
+            float delta = rotationX * sensitivityHor;
+            float _rotationY = transform.localEulerAngles.y + delta;
 
-            transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
+            transform.localEulerAngles = new Vector3(_rotationX, _rotationY, 0);
         }
+        
     }
 }
