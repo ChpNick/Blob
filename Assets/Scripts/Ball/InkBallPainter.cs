@@ -23,11 +23,11 @@ public class InkBallPainter : MonoBehaviour {
         Debug.Log("Коллизия произошла");
         Destroy(gameObject);
         
-        Vector3 closestPoint = other.collider.ClosestPointOnBounds(other.GetContact(0).point);
+//        Vector3 closestPoint = other.collider.ClosestPointOnBounds(other.GetContact(0).point);
 
         var paintObject = other.gameObject.GetComponent<InkCanvas>();
         if (paintObject != null) {
-            paintObject.Paint(brush, closestPoint);
+            paintObject.Paint(brush, other.GetContact(0).point);
         }
     }
 }
