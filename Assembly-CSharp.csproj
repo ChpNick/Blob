@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>6</LangVersion>
-    <CscToolPath>/Applications/Unity/Hub/Editor/2019.2.0f1/Unity.app/Contents/Tools/RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.sh</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -55,6 +53,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\InkPainter\Sample\Script\ClipPainter.cs" />
+    <Compile Include="Assets\InkPainter\Sample\Script\CollisionPainter.cs" />
+    <Compile Include="Assets\InkPainter\Sample\Script\CollisionReflectionPainter.cs" />
+    <Compile Include="Assets\InkPainter\Sample\Script\MousePainter.cs" />
+    <Compile Include="Assets\InkPainter\Sample\Script\ReflectPainter.cs" />
+    <Compile Include="Assets\InkPainter\Sample\Script\TextureRecovery.cs" />
+    <Compile Include="Assets\InkPainter\Script\Core\Brush.cs" />
+    <Compile Include="Assets\InkPainter\Script\Core\InkCanvas.cs" />
+    <Compile Include="Assets\InkPainter\Script\Core\Math.cs" />
+    <Compile Include="Assets\InkPainter\Script\Core\MeshOperator.cs" />
+    <Compile Include="Assets\InkPainter\Script\Effective\GrabArea.cs" />
+    <Compile Include="Assets\InkPainter\Script\Effective\HeightFluid.cs" />
+    <Compile Include="Assets\InkPainter\Script\Effective\ReverseUV.cs" />
+    <Compile Include="Assets\InkPainter\Script\Effective\TextureMorphing.cs" />
+    <Compile Include="Assets\InkPainter\Script\Extenision\GameObjectExtension.cs" />
+    <Compile Include="Assets\InkPainter\Script\Util\SceneViewCamera.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
@@ -63,10 +77,27 @@
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\Pojectors\Scripts\BulletProjector.cs" />
-    <Compile Include="Assets\Scripts\Ball\BlackBall.cs" />
+    <Compile Include="Assets\Scripts\Ball\BlackBallProjectors.cs" />
+    <Compile Include="Assets\Scripts\Ball\InkBallPainter.cs" />
     <Compile Include="Assets\Scripts\Player\FPSInput.cs" />
     <Compile Include="Assets\Scripts\Player\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Player\RayShooter.cs" />
+    <None Include="Assets\InkPainter\readme_en.txt" />
+    <None Include="Assets\InkPainter\Shader\Effective\HeightToNormal.shader" />
+    <None Include="Assets\InkPainter\Shader\Lib\InkPainterFoundation.cginc" />
+    <None Include="Assets\InkPainter\Shader\Effective\HeightToColor.shader" />
+    <None Include="Assets\InkPainter\Sample\Shader\TessellateHeightTransform.shader" />
+    <None Include="Assets\InkPainter\Shader\Effective\SingleColorFill.shader" />
+    <None Include="Assets\InkPainter\Shader\Effective\InvertAlpha.shader" />
+    <None Include="Assets\InkPainter\Shader\Effective\ReverseUV.shader" />
+    <None Include="Assets\InkPainter\Shader\Effective\HeightDrip.shader" />
+    <None Include="Assets\InkPainter\Shader\Effective\GrabArea.shader" />
+    <None Include="Assets\InkPainter\Shader\Paint\PaintNormal.shader" />
+    <None Include="Assets\InkPainter\Sample\Shader\VTFHeightTransform.shader" />
+    <None Include="Assets\InkPainter\Shader\Effective\TextureMorphing.shader" />
+    <None Include="Assets\InkPainter\Shader\Paint\PaintMain.shader" />
+    <None Include="Assets\InkPainter\Shader\Paint\PaintHeight.shader" />
+    <None Include="Assets\InkPainter\readme_jp.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/pecheninna/projects/Blob/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

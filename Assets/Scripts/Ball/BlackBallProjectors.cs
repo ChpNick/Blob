@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlackBall : MonoBehaviour {
+public class BlackBallProjectors : MonoBehaviour {
     public int Force = 10;
     public GameObject[] Projector;
     

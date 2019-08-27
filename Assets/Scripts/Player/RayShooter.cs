@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class RayShooter : MonoBehaviour {
     private Camera _camera;
-    public int TimeMiss = 1;
+//    public int TimeMiss = 1;
 
     [SerializeField] private GameObject ball;
 
@@ -55,19 +55,19 @@ public class RayShooter : MonoBehaviour {
     }
 
 
-    private IEnumerator SphereIndicator(Vector3 pos) {
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.position = pos;
-
-        yield return new WaitForSeconds(TimeMiss);
-
-        Destroy(sphere);
+    void OnGUI() {
+        int size = 12;
+        float posX = _camera.pixelWidth / 2 - size / 4;
+        float posY = _camera.pixelHeight / 2 - size / 2;
+        GUI.Label(new Rect(posX, posY, size, size), "*");
     }
+    
+//    private IEnumerator SphereIndicator(Vector3 pos) {
+//        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+//        sphere.transform.position = pos;
 
-//    void OnGUI() {
-//        int size = 12;
-//        float posX = _camera.pixelWidth / 2 - size / 4;
-//        float posY = _camera.pixelHeight / 2 - size / 2;
-//        GUI.Label(new Rect(posX, posY, size, size), "*");
+//        yield return new WaitForSeconds(TimeMiss);
+
+//        Destroy(sphere);
 //    }
 }
